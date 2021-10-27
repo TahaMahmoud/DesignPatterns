@@ -1,3 +1,5 @@
+// Proxy Pattern
+
 protocol SMSServiceProtocol {
     func sendSMS(sender: String, receiver: String, message: String)
 }
