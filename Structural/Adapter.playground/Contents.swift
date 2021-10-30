@@ -1,3 +1,5 @@
+// Adapter
+
 typealias XML = String
 typealias JSON = String
 typealias AnalyzedData = String
