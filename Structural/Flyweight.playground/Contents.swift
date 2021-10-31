@@ -23,17 +23,14 @@ class ItemDiscountCalculator: DiscountCalculator {
 
 class DiscountFactory {
     
+    private var caclulatorsList: [String: DiscountCalculator] = [String: DiscountCalculator]()
+    var calculator: DiscountCalculator?
+    
     func getDiscountCalculator(calculatorType: String) ->DiscountCalculator {
-        
-        var calculator: DiscountCalculator?
-        
-        var caclulatorsList: [String: DiscountCalculator]?
-        
-        print(caclulatorsList)
-        
-        if caclulatorsList?[calculatorType] != nil {
+                
+        if caclulatorsList[calculatorType] != nil {
             print("Object Already Exist")
-            return caclulatorsList?[calculatorType] ?? DayDiscountCalculator()
+            return caclulatorsList[calculatorType] ?? DayDiscountCalculator()
         }
         else {
             
@@ -42,31 +39,33 @@ class DiscountFactory {
             switch calculatorType {
             case "day":
                 calculator = DayDiscountCalculator()
-                caclulatorsList?[calculatorType] = calculator
-                break
             case "item":
                 calculator = ItemDiscountCalculator()
-                caclulatorsList?[calculatorType] = calculator
-                break
             default:
                 calculator = DayDiscountCalculator()
-                caclulatorsList?[calculatorType] = calculator
-                break
             }
             
+            caclulatorsList[calculatorType] = calculator
+            
+            return calculator ?? DayDiscountCalculator()
         }
         
-        return calculator ?? DayDiscountCalculator()
     }
 }
 
 let discountFactory = DiscountFactory()
+
 var calculator1 = discountFactory.getDiscountCalculator(calculatorType: "day")
 var discountValue1 = calculator1.getDiscount(date: Date(), itemID: nil)
-
+// Object Not Exist -> Create New One
 print(discountValue1)
 
 var calculator2 = discountFactory.getDiscountCalculator(calculatorType: "day")
 var discountValue2 = calculator2.getDiscount(date: Date(), itemID: nil)
-
+// Object Already Exist
 print(discountValue2)
+
+var calculator3 = discountFactory.getDiscountCalculator(calculatorType: "item")
+var discountValue3 = calculator3.getDiscount(date: Date(), itemID: nil)
+// Object Not Exist -> Create New One
+print(discountValue3)
