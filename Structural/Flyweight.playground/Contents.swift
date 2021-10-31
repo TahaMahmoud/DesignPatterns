@@ -26,7 +26,7 @@ class DiscountFactory {
     private var caclulatorsList: [String: DiscountCalculator] = [String: DiscountCalculator]()
     var calculator: DiscountCalculator?
     
-    func getDiscountCalculator(calculatorType: String) ->DiscountCalculator {
+    func getDiscountCalculator(calculatorType: String) -> DiscountCalculator {
                 
         if caclulatorsList[calculatorType] != nil {
             print("Object Already Exist")
