@@ -1,4 +1,4 @@
-// Momento Pattern
+// Memento Pattern
 
 import Foundation
 
