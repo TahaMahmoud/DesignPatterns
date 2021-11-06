@@ -1,6 +1,6 @@
-// Observer Pattern
+// State Pattern
 
-import XCTest
+import Foundation
 
 class LocationTracker {
 
